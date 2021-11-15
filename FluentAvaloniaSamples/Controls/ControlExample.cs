@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AvaloniaEdit;
 using IconElement = FluentAvalonia.UI.Controls.IconElement;
 using PathIcon = FluentAvalonia.UI.Controls.PathIcon;
 
@@ -22,6 +23,8 @@ namespace FluentAvaloniaSamples
 {
     public class ControlExample : HeaderedContentControl
     {
+	    private TextEditor PART_XamlPreviewer;
+	    
 		public ControlExample()
 		{
 			properties = new AvaloniaList<DocsItemViewModel>();
@@ -107,6 +110,12 @@ namespace FluentAvaloniaSamples
 			{
 				ic.Items = properties;
 			}
+			
+			PART_XamlPreviewer = e.NameScope.Find<TextEditor>("PART_XamlPreviewer");
+			if (PART_XamlPreviewer is not null)
+			{
+				PART_XamlPreviewer.Text = XamlSource;
+			}
 		}
 
 		protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
@@ -189,6 +198,13 @@ namespace FluentAvaloniaSamples
 				}
 
 				UpdateXamlSource();
+			}
+			else if (change.Property == XamlSourceProperty)
+			{
+				if (PART_XamlPreviewer is not null)
+				{
+					PART_XamlPreviewer.Text = change.NewValue.GetValueOrDefault<string>();
+				}
 			}
 		}
 
