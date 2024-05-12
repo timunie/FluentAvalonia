@@ -25,35 +25,36 @@ public partial class MainView : UserControl
     {
         InitializeComponent();
 
-        SearchBox.KeyUp += (s, e) =>
-        {
-            if (e.Key == Key.Enter)
-            {
-                var acb = (s as AutoCompleteBox);
-                if (acb.SelectedItem != null)
-                {
-                    var item = acb.SelectedItem as MainAppSearchItem;
-                    NavigationService.Instance.NavigateFromContext(item.ViewModel,
-                        new EntranceNavigationTransitionInfo());
-                }
-                else
-                {
-                    var items = (DataContext as MainViewViewModel).SearchTerms;
-                    foreach (var item in items)
-                    {
-                        if (string.Equals(item.Header, acb.Text, StringComparison.OrdinalIgnoreCase))
-                        {
-                            NavigationService.Instance.NavigateFromContext(item.ViewModel,
-                                new EntranceNavigationTransitionInfo());
-                            break;
-                        }
-                    }
-                }
-                e.Handled = true;
-            }
-        };
+        // SearchBox.KeyUp += (s, e) =>
+        // {
+        //     if (e.Key == Key.Enter)
+        //     {
+        //         var acb = (s as AutoCompleteBox);
+        //         if (acb.SelectedItem != null)
+        //         {
+        //             var item = acb.SelectedItem as MainAppSearchItem;
+        //             NavigationService.Instance.NavigateFromContext(item.ViewModel,
+        //                 new EntranceNavigationTransitionInfo());
+        //         }
+        //         else
+        //         {
+        //             var items = (DataContext as MainViewViewModel).SearchTerms;
+        //             foreach (var item in items)
+        //             {
+        //                 if (string.Equals(item.Header, acb.Text, StringComparison.OrdinalIgnoreCase))
+        //                 {
+        //                     NavigationService.Instance.NavigateFromContext(item.ViewModel,
+        //                         new EntranceNavigationTransitionInfo());
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //         e.Handled = true;
+        //     }
+        // };
     }
 
+    /*
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
@@ -64,9 +65,9 @@ public partial class MainView : UserControl
         _isDesktop = TopLevel.GetTopLevel(this) is Window;
         var vm = new MainViewViewModel();
         DataContext = vm;
-        FrameView.NavigationPageFactory = vm.NavigationFactory;
-        NavigationService.Instance.SetFrame(FrameView);
-        NavigationService.Instance.SetOverlayHost(OverlayHost);
+        // FrameView.NavigationPageFactory = vm.NavigationFactory;
+        // NavigationService.Instance.SetFrame(FrameView);
+        // NavigationService.Instance.SetOverlayHost(OverlayHost);
 
         // On desktop, the window will call this during the splashscreen
         if (e.Root is AppWindow aw)
@@ -80,10 +81,10 @@ public partial class MainView : UserControl
         {
             InitializeNavigationPages();
         }
-
-        FrameView.Navigated += OnFrameViewNavigated;
-        NavView.ItemInvoked += OnNavigationViewItemInvoked;
-        NavView.BackRequested += OnNavigationViewBackRequested;        
+        //
+        // FrameView.Navigated += OnFrameViewNavigated;
+        // NavView.ItemInvoked += OnNavigationViewItemInvoked;
+        // NavView.BackRequested += OnNavigationViewBackRequested;        
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -406,4 +407,5 @@ public partial class MainView : UserControl
     }
 
     private bool _isDesktop;
+    */
 }
