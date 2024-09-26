@@ -196,6 +196,13 @@
                             </Style>
                         </Grid.Styles>
                         
+                        <Rectangle Name="PART_ThirdSpacer"
+                                   IsVisible="False"
+                                   Fill="{DynamicResource TimePickerFlyoutPresenterSpacerFill}"
+                                   HorizontalAlignment="Center"
+                                   Width="{DynamicResource TimePickerSpacerThemeWidth}"
+                                   Grid.Column="1" />
+                        
                         <Grid Name="PART_PickerContainer">
                             <!--Ignore col defs here, set in code-->
                             <Panel Name="PART_HourHost" Grid.Column="0">
@@ -249,6 +256,29 @@
 
                             </Panel>
 
+                            <Rectangle Name="PART_SecondSpacer"
+                                       Fill="{DynamicResource TimePickerFlyoutPresenterSpacerFill}"
+                                       HorizontalAlignment="Center"
+                                       Width="{DynamicResource TimePickerSpacerThemeWidth}"
+                                       IsVisible="False" />
+                            
+                            <Panel Name="PART_SecondHost" Grid.Column="4" IsVisible="False">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                              VerticalScrollBarVisibility="Hidden">
+                                    <DateTimePickerPanel Name="PART_SecondSelector"
+                                                         PanelType="TimePeriod"
+                                                         ShouldLoop="False"
+                                                         ItemHeight="{DynamicResource TimePickerFlyoutPresenterItemHeight}"/>
+                                </ScrollViewer>
+                                <RepeatButton Name="PART_PeriodUpButton"
+                                              Theme="{StaticResource DateTimePickerFlyoutLoopingNavButton}"
+                                              Classes="UpButton"/>
+                                <RepeatButton Name="PART_PeriodDownButton"
+                                              Theme="{StaticResource DateTimePickerFlyoutLoopingNavButton}"
+                                              Classes="DownButton"/>
+
+                            </Panel>
+                            
                             <!-- Switched to Border for CornerRadius -->
                             <Border x:Name="HighlightRect" ZIndex="-1"
                                     Background="{DynamicResource TimePickerFlyoutPresenterHighlightFill}"
